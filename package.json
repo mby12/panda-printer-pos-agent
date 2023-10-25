@@ -1,5 +1,6 @@
 {
   "description": "A foundation for scalable desktop apps",
+  "version": "1.1.3",
   "keywords": [
     "electron",
     "boilerplate",
@@ -40,7 +41,7 @@
     "build:renderer": "cross-env NODE_ENV=production TS_NODE_TRANSPILE_ONLY=true webpack --config ./.erb/configs/webpack.config.renderer.prod.ts",
     "postinstall": "ts-node .erb/scripts/check-native-dep.js && electron-builder install-app-deps && npm run build:dll",
     "lint": "cross-env NODE_ENV=development eslint . --ext .js,.jsx,.ts,.tsx",
-    "package": "ts-node ./.erb/scripts/clean.js dist && npm run build && electron-builder build --publish never && npm run build:dll",
+    "package": "ts-node ./.erb/scripts/clean.js dist && npm run build && cross-env GH_TOKEN=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 electron-builder build --publish always && npm run build:dll",
     "rebuild": "electron-rebuild --parallel --types prod,dev,optional --module-dir release/app",
     "start": "ts-node ./.erb/scripts/check-port-in-use.js && npm run start:renderer",
     "start:main": "cross-env NODE_ENV=development electronmon -r ts-node/register/transpile-only .",
@@ -97,12 +98,12 @@
   },
   "dependencies": {
     "@node-escpos/core": "^0.4.0",
+    "detect-port": "^1.5.1",
     "electron-debug": "^3.2.0",
     "electron-log": "^4.4.8",
     "electron-store": "^8.1.0",
     "electron-updater": "^6.1.4",
     "express": "^4.18.2",
-    "http-request-signature": "^0.0.5",
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -136,7 +137,6 @@
     "cross-env": "^7.0.3",
     "css-loader": "^6.8.1",
     "css-minimizer-webpack-plugin": "^5.0.1",
-    "detect-port": "^1.5.1",
     "electron": "^22.3.27",
     "electron-builder": "^24.6.4",
     "electron-devtools-installer": "^3.2.0",
@@ -243,8 +243,9 @@
     ],
     "publish": {
       "provider": "github",
-      "owner": "electron-react-boilerplate",
-      "repo": "electron-react-boilerplate"
+      "owner": "mby12",
+      "repo": "panda-printer-pos-agent",
+      "private": true
     }
   },
   "collective": {

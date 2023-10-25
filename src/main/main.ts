@@ -17,6 +17,7 @@ import {
   nativeImage,
   Tray,
   Menu,
+  dialog,
 } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
@@ -40,11 +41,30 @@ import { resolveHtmlPath } from './util';
 
 const store = new Store();
 const expressApp = express();
+let mainWindow: BrowserWindow | null = null;
 
 class AppUpdater {
   constructor() {
     log.transports.file.level = 'info';
     autoUpdater.logger = log;
+    autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
+      const dialogOpts = {
+        type: 'info',
+        buttons: ['Nanti', 'Mulai Ulang dan Update'],
+        title: 'Update Tersedia',
+        message: process.platform === 'win32' ? releaseNotes : releaseName,
+        detail:
+          'Versi baru telah diunduh. Mulai ulang aplikasi untuk menerapkan pembaruan.',
+      };
+
+      dialog
+        .showMessageBox(dialogOpts)
+        .then((returnValue) => {
+          if (returnValue.response === 1) autoUpdater.quitAndInstall();
+        })
+        .catch(() => {});
+    });
+    // autoUpdater.forceDevUpdateConfig = true;
     autoUpdater.checkForUpdatesAndNotify();
   }
 }
@@ -59,8 +79,6 @@ const RESOURCES_PATH = app.isPackaged
 const getAssetPath = (...paths: string[]): string => {
   return path.join(RESOURCES_PATH, ...paths);
 };
-
-let mainWindow: BrowserWindow | null = null;
 
 ipcMain.on('usb-list', async (event, _arg) => {
   const deviceList = USB.findPrinter();
@@ -84,9 +102,8 @@ ipcMain.on('set-selected-usb-device', async (event, device) => {
   );
 });
 
-function
-doUsbPrint(arg) {
-  if(!arg) return;
+function doUsbPrint(arg) {
+  if (!arg) return;
   const cachedSelectedUsb = store.get('selected-usb-device');
   if (cachedSelectedUsb === undefined) {
     throw new Error('No Device Selected');
@@ -293,11 +310,16 @@ if (!gotTheLock) {
       }
     },
   );
-
+  let progressInterval;
+  // before the app is terminated, clear both timers
+  app.on('before-quit', () => {
+    clearInterval(progressInterval);
+  });
   app
     .whenReady()
     .then(() => {
       // console.log();
+      console.log('CURRENT APP VERSION', app.getVersion());
 
       if (process.defaultApp) {
         if (process.argv.length >= 2) {
@@ -314,6 +336,23 @@ if (!gotTheLock) {
       createTray();
       expressApp.listen(45214, function () {
         console.log('express app is ready');
+
+        const INCREMENT = 0.03;
+        const INTERVAL_DELAY = 100; // ms
+        let c = 0;
+        progressInterval = setInterval(() => {
+          // update progress bar to next value
+          // values between 0 and 1 will show progress, >1 will show indeterminate or stick at 100%
+          mainWindow?.setProgressBar(c);
+
+          // increment or reset progress bar
+          // if (c < 2) {
+          //   c += INCREMENT;
+          // } else {
+          //   c = -INCREMENT * 5; // reset to a bit less than 0 to show reset state
+          // }
+          // console.log(c);
+        }, INTERVAL_DELAY);
       });
       app.on('activate', () => {
         // On macOS it's common to re-create a window in the app when the

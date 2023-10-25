@@ -134,9 +134,9 @@ class Hello extends Component<IProps, IState> {
     return (
       <div>
         <div className="h-screen flex flex-col items-center justify-center bg-gray-200">
-          {(usbDeviceList?.length || 0) > 0 && <h5>Select Device:</h5>}
+          {(usbDeviceList?.length || 0) > 0 && <h5>Pilih Printer:</h5>}
           {usbDeviceList?.length === 0 && (
-            <span>No USB Printer Device Detected.</span>
+            <span>Tidak ada Printer USB Terdeteksi.</span>
           )}
           {usbDeviceList?.map((device) => (
             <button
@@ -177,7 +177,7 @@ class Hello extends Component<IProps, IState> {
                 onClick={() => this.testPrint()}
                 className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-2"
               >
-                Test Print Selected Device
+                Test Print
               </button>
             )}
           </div>
