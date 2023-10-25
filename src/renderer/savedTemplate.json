@@ -1,0 +1,99 @@
+[
+  { CMD: 'FONT', ARGS: 'A' },
+  { CMD: 'ALIGN', ARGS: 'ct' },
+  { CMD: 'STYLE', ARGS: 'b' },
+  { CMD: 'TEXT', ARGS: 'APOTEK K-24 MORRIS TELUK GONG' },
+  { CMD: 'TEXT', ARGS: 'Jl. K Blok E-1 No.30' },
+  { CMD: 'STYLE', ARGS: 'normal' },
+  { CMD: 'FEED', ARGS: 2 },
+  { CMD: 'TEXT', ARGS: 'Telp : 021 - 6607798' },
+  { CMD: 'TEXT', ARGS: 'WA/Delivery : 0812193188481' },
+  { CMD: 'TEXT', ARGS: 'NPWP : 02.644.969.4-541.000' },
+  { CMD: 'TEXT', ARGS: 'Harga Barang Termasuk PPN' },
+  { CMD: 'FEED' },
+  { CMD: 'TEXT', ARGS: '13401.22653/TESTKASIR/TUNAI/ASLI' },
+  { CMD: 'TEXT', ARGS: '--------16/10/2023 13:56--------' },
+  { CMD: 'FEED' },
+  { CMD: 'TEXT', ARGS: '--------------------------------' },
+  { CMD: 'FONT', ARGS: 'b' },
+  { CMD: 'ALIGN', ARGS: 'LT' },
+  {
+    CMD: 'TABLE',
+    ARGS: [
+      { text: 'TAB BODREX TAB 20S', align: 'LEFT', width: 0.5 },
+      { text: '2.319.001', align: 'RIGHT', width: 0.25 },
+    ],
+  },
+  {
+    CMD: 'TABLE',
+    ARGS: [
+      {
+        text: 'TAB PONSTAND FCT 500MG TAB 100S',
+        align: 'LEFT',
+        width: 0.5,
+      },
+      { text: '9.901', align: 'RIGHT', width: 0.25 },
+    ],
+  },
+  {
+    CMD: 'TABLE',
+    ARGS: [
+      { text: 'TAB BODREX TAB 20S', align: 'LEFT', width: 0.5 },
+      { text: '2.319.901', align: 'RIGHT', width: 0.25 },
+    ],
+  },
+  { CMD: 'FONT', ARGS: 'a' },
+  { CMD: 'TEXT', ARGS: '--------------------------------' },
+  {
+    CMD: 'LINE_SPACE',
+    ARGS: 35,
+  },
+  {
+    CMD: 'TABLE',
+    ARGS: [
+      { text: 'Sub Total', align: 'LEFT', width: 0.3 },
+      { text: ':', align: 'LEFT', width: 0.15 },
+      { text: '1.212.319.901', align: 'RIGHT', width: 0.32 },
+    ],
+  },
+  {
+    CMD: 'TABLE',
+    ARGS: [
+      { text: 'Pembulatan', align: 'LEFT', width: 0.3 },
+      { text: ':', align: 'LEFT', width: 0.15 },
+      { text: '-21', align: 'RIGHT', width: 0.32 },
+    ],
+  },
+  {
+    CMD: 'TABLE',
+    ARGS: [
+      { text: 'Total', align: 'LEFT', width: 0.3 },
+      { text: ':', align: 'LEFT', width: 0.15 },
+      { text: '1.212.319.901', align: 'RIGHT', width: 0.32 },
+    ],
+  },
+  {
+    CMD: 'TABLE',
+    ARGS: [
+      { text: 'Kembalian', align: 'LEFT', width: 0.3 },
+      { text: ':', align: 'LEFT', width: 0.15 },
+      { text: '1.901', align: 'RIGHT', width: 0.32 },
+    ],
+  },
+  { CMD: 'ALIGN', ARGS: 'ct' },
+  { CMD: 'TEXT', ARGS: 'SEHAT SELALU' },
+  { CMD: 'TEXT', ARGS: '====== Customer Care K-24 ======' },
+  { CMD: 'FONT', ARGS: 'C' },
+  { CMD: 'TEXT', ARGS: 'SMS/WA : 0811 1724 247 / 0811 1824 246' },
+  { CMD: 'TEXT', ARGS: 'Email : Keluhan@k24.co.id' },
+  { CMD: 'FEED' },
+  {
+    CMD: 'TEXT',
+    ARGS: 'Dapatkan Rp 200.000 Jika tidak diberikan  Struk / Nota Resmi',
+  },
+  { CMD: 'FEED' },
+  {
+    CMD: 'TEXT',
+    ARGS: 'Daftar Cardless Membership GRATIS! Belanja langsung / online di Web & App K24Klik   pasti dapat POIN',
+  },
+]

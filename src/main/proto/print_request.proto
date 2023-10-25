@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package print_request;
+
+message PrintResult {
+    bool success = 1;
+    string message = 2;
+}
+
+service PrintService {
+    rpc DoPrint (Empty) returns (PrintResult) {}
+}
+
+message Empty {}

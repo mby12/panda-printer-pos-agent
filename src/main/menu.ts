@@ -4,6 +4,7 @@ import {
   shell,
   BrowserWindow,
   MenuItemConstructorOptions,
+  ipcMain,
 } from 'electron';
 
 interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {
@@ -198,14 +199,17 @@ export default class MenuBuilder {
         label: '&File',
         submenu: [
           {
-            label: '&Open',
-            accelerator: 'Ctrl+O',
+            label: '&Clear Saved Printer',
+            click: () => {
+              // ipcMain();
+              this.mainWindow.webContents.send('command', 'clear-saved-device');
+            },
           },
           {
-            label: '&Close',
+            label: '&Quit',
             accelerator: 'Ctrl+W',
             click: () => {
-              this.mainWindow.close();
+              app.quit();
             },
           },
         ],
